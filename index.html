@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CRM Lead Management Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="logo">Mini CRM</div>
+        <nav class="main-nav">
+            <ul>
+                <li class="active"><a href="#"><i class="fas fa-chart-line"></i> Dashboard</a></li>
+                <li><a href="#"><i class="fas fa-users"></i> Leads</a></li>
+                <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="#"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="header">
+            <div class="header-left">
+                <button class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <h1>Lead Management Dashboard</h1>
+            </div>
+            <div class="header-right">
+                <span class="user-info">Admin User</span>
+                <div class="avatar">AD</div>
+            </div>
+        </header>
+
+        <!-- Stats -->
+        <section class="dashboard-stats">
+            <div class="stat-card"><h3>Total Leads</h3><p id="stat-total">0</p></div>
+            <div class="stat-card"><h3>New Leads</h3><p id="stat-new">0</p></div>
+            <div class="stat-card"><h3>Contacted</h3><p id="stat-contacted">0</p></div>
+            <div class="stat-card"><h3>Converted</h3><p id="stat-converted">0</p></div>
+            <div class="stat-card conversion-rate"><h3>Conversion Rate</h3><p id="stat-conversion-rate">0%</p></div>
+        </section>
+
+        <!-- Leads -->
+        <section class="leads-section">
+            <div class="section-header">
+                <h2>All Leads</h2>
+                <div class="actions">
+                    <div class="search-box">
+                        <input type="text" id="lead-search" placeholder="Search by name or email...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="filter-box">
+                        <select id="lead-filter">
+                            <option value="all">All</option>
+                            <option value="new">New</option>
+                            <option value="contacted">Contacted</option>
+                            <option value="converted">Converted</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="leads-table-container">
+                <table class="leads-table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Source</th>
+                            <th>Status</th>
+                            <th>Created</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leads-table-body"></tbody>
+                </table>
+            </div>
+
+            <div class="no-leads-message" style="display:none;">
+                No leads found matching your criteria.
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<!-- Modal -->
+<div id="lead-detail-modal" class="modal">
+    <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2 id="modal-lead-name"></h2>
+
+        <div class="modal-body">
+            <div class="lead-info">
+                <p><strong>Email:</strong> <span id="modal-lead-email"></span></p>
+                <p><strong>Phone:</strong> <span id="modal-lead-phone"></span></p>
+                <p><strong>Source:</strong> <span id="modal-lead-source"></span></p>
+                <p><strong>Created:</strong> <span id="modal-lead-created-at"></span></p>
+            </div>
+
+            <div class="lead-status-update">
+                <h3>Update Status</h3>
+                <select id="modal-lead-status">
+                    <option value="new">New</option>
+                    <option value="contacted">Contacted</option>
+                    <option value="converted">Converted</option>
+                </select>
+                <button id="save-status-btn" class="btn-primary">Save</button>
+            </div>
+
+            <div class="lead-notes">
+                <h3>Notes</h3>
+                <div id="modal-lead-notes-list" class="notes-list"></div>
+                <div class="add-note">
+                    <textarea id="new-note-text" placeholder="Add note..."></textarea>
+                    <button id="add-note-btn" class="btn-secondary">Add Note</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="toast-container"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
